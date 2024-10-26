@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000000; /* Light blue background */
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background-color: #87CEFA; /* Blue background */
+    overflow: hidden;
+    border: 2px solid #000;
+}
+
+/* Cartoonish Scenery */
+#game-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: #7CFC00; /* Grass green */
+    z-index: -1;
+}
+
+#game-container::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    z-index: -1;
+    animation: moveCloud 8s linear infinite;
+}
+
+/* Animate the cloud to move across the screen */
+@keyframes moveCloud {
+    0% { left: -100px; }
+    100% { left: 400px; }
+}
+
+/* Bird styles */
+#bird {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #fdd835;
+    border-radius: 50%;
+    left: 50px;
+    top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Wing styles */
+.wing {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    z-index: 1;
+    top: 20px;
+    animation: flap 0.5s infinite ease-in-out;
+}
+
+@keyframes flap {
+    0%, 100% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+.wing-left {
+    left: -10px;
+}
+
+.wing-right {
+    right: -10px;
+}
+
+.eye {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 15px;
+}
+
+.eye-left {
+    left: 10px;
+}
+
+.eye-right {
+    right: 10px;
+}
+
+.beak {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: #ff7043;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 30px;
+    left: 20px;
+}
+
+/* Pipe styles */
+.pipe {
+    position:  absolute;
+    width: 60px;
+    background-color: #A8E4A0; /* Light green for pipes */
+}
+.cloud {
+    position: absolute;
+    width: 100px; /* Width of the cloud */
+    height: 60px; /* Height of the cloud */
+    background: white; /* Cloud color */
+    border-radius: 50px; /* Round edges for cloud shape */
+    opacity: 0.8; /* Slightly transparent */
+}
+
+.cloud:before,
+.cloud:after {
+    content: '';
+    position: absolute;
+    background: white; /* Cloud color */
+    border-radius: 50%; /* Round edges */
+}
+
+.cloud:before {
+    width: 80px; /* Width of the small cloud */
+    height: 80px; /* Height of the small cloud */
+    left: -40px; /* Position to the left */
+    top: 10px; /* Adjust vertical position */
+}
+
+.cloud:after {
+    width: 80px; /* Width of the small cloud */
+    height: 80px; /* Height of the small cloud */
+    right: -40px; /* Position to the right */
+    top: 10px; /* Adjust vertical position */
+}
+ 
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #000;
+}
+
+#high-score {
+    position: absolute;
+    top: 40px; /* Position below the score */
+    left: 10px;
+    font-size: 20px;
+    color: black; /* High score color */
+    margin-top: 10px; /* Add margin to create space between score and high score */
+}
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    text-align: center;
+}
+
+#game-over button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
